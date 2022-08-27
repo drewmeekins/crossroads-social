@@ -4,7 +4,7 @@ const Profile = require('../models/profiles')
 
 
 // adding seed route
-router.get('/seed', async (req, res) => {
+router.get('/profileseed', async (req, res) => {
     const newProfile = 
         [
             {
