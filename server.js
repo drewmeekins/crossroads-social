@@ -28,13 +28,14 @@ mongoose.connection.once('open', () => {
 app.use((methodOverride('_method')))
 app.use(express.urlencoded({extended: true}))
 app.use(express.json())
-app.use(express.static('static'))
+app.use(express.static('public'))
 app.use(profileController)
 app.use(locationController)
 
 // index route
 app.get('/', (req, res) => {
-    res.send('Welcome To Crossroads')
+    // res.send('Welcome To Crossroads')
+    res.render('index')
 })
 
 // setup server

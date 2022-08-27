@@ -24,8 +24,9 @@ router.get('/profileseed', async (req, res) => {
 })
 
 // index route
-router.get('/home', (req, res) => {
-    res.send('Welcome To Crossroads. Please Sign Up!')
+router.get('/newProfile', (req, res) => {
+    // res.send('Welcome To Crossroads. Please Sign Up!')
+    res.render('profile/newProfile')
 })
 
 // profile show route
