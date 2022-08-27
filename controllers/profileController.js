@@ -4,8 +4,8 @@ const Profile = require('../models/profiles')
 
 
 // adding seed route
-router.get('/seed', (req, res) => {
-    Profile.create(
+router.get('/seed', async (req, res) => {
+    const newProfile = 
         [
             {
                 name: 'Drew',
@@ -15,7 +15,12 @@ router.get('/seed', (req, res) => {
                 img: 'https://www.creativeuncut.com/gallery-27/art/mgs5-diamond-dogs-crest.jpg'
             }
         ]
-    )
+    try {
+        const seedItems = await Profile.create(newProfile)
+        res.send(seedItems)
+    } catch (err) {
+        res.send(err.message)
+    }
 })
 
 // index route

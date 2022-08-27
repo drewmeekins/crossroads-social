@@ -11,9 +11,18 @@ const locationController = require('./controllers/locationController')
 app.set('view engine', 'ejs')
 
 // require .env file
-// const PORT = process.env.PORT
-const PORT = 3000
-const mongodbURI = process.env.MONGODBURI
+require('dotenv').config()
+const PORT = process.env.PORT
+// const PORT = 3000
+
+// setup mongoose
+const mongoose = require('mongoose')
+const mongoURI = process.env.MONGO_URI
+
+mongoose.connect(mongoURI)
+mongoose.connection.once('open', () => {
+    console.log('connected to mongo')
+})
 
 // middleware
 app.use((methodOverride('_method')))
