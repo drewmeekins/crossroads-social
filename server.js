@@ -4,8 +4,10 @@ const app = express()
 const Profile = require('./models/profiles')
 const Location = require('./models/locations')
 const methodOverride = require('method-override')
+const bcrypt = require('bcrypt')
 const profileController = require('./controllers/profileController')
 const locationController = require('./controllers/locationController')
+const userController = require('./controllers/userController')
 
 // View Setup
 app.set('view engine', 'ejs')
@@ -31,6 +33,7 @@ app.use(express.json())
 app.use(express.static('public'))
 app.use(profileController)
 app.use(locationController)
+app.use(userController)
 
 // index route
 app.get('/', (req, res) => {

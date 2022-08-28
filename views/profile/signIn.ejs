@@ -1,0 +1,14 @@
+<%- include('../partials/header.ejs') %>
+
+<body>
+    <div class="container">
+        <h1>Welcome To Crossroads!</h1>
+        <form action="/signin" method="POST">
+            <input type="text" name="name" placeholder="Username">
+            <input type="text" name="img" placeholder="Password">
+            <input type="submit" placeholder="Submit">
+        </form>
+    </div>
+</body>
+
+<%- include('../partials/footer') %>

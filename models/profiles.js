@@ -3,6 +3,7 @@ const mongoose = require('mongoose')
 
 // create the schema
 const profileSchema = new mongoose.Schema({
+    username: { type: String, required: true },
     name: { type: String, required: true },
     dob: { type: String, required: true },
     location: { type: String, required: true },

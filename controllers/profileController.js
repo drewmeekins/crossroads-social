@@ -8,6 +8,7 @@ router.get('/profileseed', async (req, res) => {
     const newProfile = 
         [
             {
+                username: 'Drew',
                 name: 'Drew',
                 dob: 'September 14',
                 location: 'Washington, DC',
@@ -23,10 +24,16 @@ router.get('/profileseed', async (req, res) => {
     }
 })
 
-// index route
-router.get('/newProfile', (req, res) => {
+// new profile route
+router.get('/newprofile', (req, res) => {
     // res.send('Welcome To Crossroads. Please Sign Up!')
     res.render('profile/newProfile')
+})
+
+// sign in route
+router.get('/signin', (req, res) => {
+    // res.send('Welcome To Crossroads. Please Sign Up!')
+    res.render('profile/signIn')
 })
 
 // profile show route
