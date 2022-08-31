@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt')
 const router = express.Router()
 const session = require('express-session')
 const Profile = require('../models/profiles')
-const Comments = require('../models/comments')
+// const Comments = require('../models/comments')
 
 // custom middleware
 const authRequired = (req, res, next) => {
@@ -94,15 +94,25 @@ router.get('/signout', (req, res) => {
 })
 
 // comment post route
-router.post('/:username', (req, res) => {
-    let foundUser = req.session.currentUser
+// router.post('/:username', (req, res) => {
+//     let foundUser = req.session.currentUser
 
-    Comments.create(req.body, (err, createdComment) => {
+//     Comments.create(req.body, (err, createdComment) => {
+//         console.log('Comment is created', createdComment)
+//     // Comments.push(req.body)
+//         res.redirect(`/profile/${foundUser.username}`)
+//     })
+// })
+
+router.put('/:username', (req, res) => {
+    let foundUser = req.session.currentUser
+    Profile.findOneAndUpdate(req.body, (err, createdComment) => {
         console.log('Comment is created', createdComment)
     // Comments.push(req.body)
         res.redirect(`/profile/${foundUser.username}`)
     })
 })
+ 
 
 // profile show route
 router.get('/:username',  (req, res) => {
@@ -111,13 +121,14 @@ router.get('/:username',  (req, res) => {
         if(userExists) {
             res.render('profile/showProfile', {
                 profile: foundUser,
-                comment: Comments
+                // comment: Comments
             })
         }else{
             res.send('user not found')
         }
     }) 
 })
+
 
 // edit route
 router.get('/:username/edit', (req, res) => {
