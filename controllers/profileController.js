@@ -4,6 +4,14 @@ const router = express.Router()
 const session = require('express-session')
 const Profile = require('../models/profiles')
 
+// custom middleware
+const authRequired = (req, res, next) => {
+    if(req.session.currentUser){
+        next()
+    }else{
+        res.send('You must be logged in to do that.')
+    }
+}
 
 
 
@@ -96,9 +104,22 @@ router.get('/:username',  (req, res) => {
             res.send('user not found')
         }
     }) 
-    
 })
 
+// edit route
+router.get('/:username/edit', (req, res) => {
+    const foundUser = req.session.currentUser
+    res.render('profile/editProfile', {
+        profile: foundUser
+    })
+})
+
+router.put('/:username', (req, res) => {
+    let foundUser = req.session.currentUser
+    foundUser = req.body
+    console.log(foundUser)
+    res.redirect(`/`)
+})
 
 
 module.exports = router

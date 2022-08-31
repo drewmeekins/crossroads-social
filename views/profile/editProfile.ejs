@@ -1,5 +1,19 @@
 <%- include('../partials/header') %>
 
+<body>
+    <div class="container">
+        <h1>Edit Profile</h1>
+        <form action="/profile/<%= profile.username %>?_method=PUT" method="POST" class="signUp">
+            <input type="text" name="username" placeholder="<%= profile.username %>">
+            <input type="text" name="password" placeholder="Password">
+            <input type="text" name="dob" placeholder="<%= profile.dob %>">
+            <input type="text" name="location" placeholder="<%= profile.location %>">
+            <input type="text" name="interests" placeholder="<%= profile.interests %>">
+            <input type="text" name="img" placeholder="Image Link">
+            <input type="submit" placeholder="Submit">
+        </form>
+    </div>
+</body>
 
 
 <%- include('../partials/footer') %>
