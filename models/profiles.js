@@ -3,12 +3,13 @@ const mongoose = require('mongoose')
 
 // create the schema
 const profileSchema = new mongoose.Schema({
-    username: { type: String, required: true },
-    name: { type: String, required: true },
-    dob: { type: String, required: true },
-    location: { type: String, required: true },
+    username: { type: String, unique: true, required: true },
+    password: String,
+    name: { type: String, required: false },
+    dob: { type: String, required: false },
+    location: { type: String, required: false },
     interests: { type: String, required: false },
-    img: { type: String, required: true },
+    img: { type: String, required: false },
 })
 
 // create model

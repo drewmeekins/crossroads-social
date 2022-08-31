@@ -32,9 +32,9 @@ app.use((methodOverride('_method')))
 app.use(express.urlencoded({extended: true}))
 app.use(express.json())
 app.use(express.static('public'))
-app.use(profileController)
+app.use('/profile', profileController)
 app.use(locationController)
-app.use('/users', userController)
+// app.use('/users', userController)
 app.use(
     session({
       secret: process.env.SECRET, 
