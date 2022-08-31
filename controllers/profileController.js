@@ -17,25 +17,25 @@ const authRequired = (req, res, next) => {
 
 
 // adding seed route
-router.get('/profileseed', async (req, res) => {
-    const newProfile = 
-        [
-            {
-                username: 'Drew',
-                name: 'Drew',
-                dob: 'September 14',
-                location: 'Washington, DC',
-                interests: 'Music',
-                img: 'https://www.creativeuncut.com/gallery-27/art/mgs5-diamond-dogs-crest.jpg'
-            }
-        ]
-    try {
-        const seedItems = await Profile.create(newProfile)
-        res.send(seedItems)
-    } catch (err) {
-        res.send(err.message)
-    }
-})
+// router.get('/profileseed', async (req, res) => {
+//     const newProfile = 
+//         [
+//             {
+//                 username: 'Drew',
+//                 name: 'Drew',
+//                 dob: 'September 14',
+//                 location: 'Washington, DC',
+//                 interests: 'Music',
+//                 img: 'https://www.creativeuncut.com/gallery-27/art/mgs5-diamond-dogs-crest.jpg'
+//             }
+//         ]
+//     try {
+//         const seedItems = await Profile.create(newProfile)
+//         res.send(seedItems)
+//     } catch (err) {
+//         res.send(err.message)
+//     }
+// })
 
 
 // register route
