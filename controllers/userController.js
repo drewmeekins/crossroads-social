@@ -3,7 +3,7 @@ const express = require('express')
 const users = express.Router()
 const User = require('../models/users.js')
 
-users.get('/new', (req, res) => {
+users.get('/', (req, res) => {
   res.render('profile/newProfile')
 })
 

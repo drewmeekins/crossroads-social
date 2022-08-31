@@ -5,6 +5,7 @@ const Profile = require('./models/profiles')
 const Location = require('./models/locations')
 const methodOverride = require('method-override')
 const bcrypt = require('bcrypt')
+const session = require('express-session')
 const profileController = require('./controllers/profileController')
 const locationController = require('./controllers/locationController')
 const userController = require('./controllers/userController')
@@ -33,7 +34,25 @@ app.use(express.json())
 app.use(express.static('public'))
 app.use(profileController)
 app.use(locationController)
-app.use(userController)
+app.use('/users', userController)
+app.use(
+    session({
+      secret: process.env.SECRET, 
+      resave: false, 
+      saveUninitialized: false 
+    })
+  )
+
+
+// user save route
+app.get('/newprofile', (req, res) => {
+    req.session.newProfile = 'any value'
+})
+
+// retrieve user route
+// app.get('/retrieve', (req, res) => {
+//     if(req.session.newProfile === )
+// })
 
 // index route
 app.get('/', (req, res) => {
