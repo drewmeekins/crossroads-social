@@ -3,6 +3,7 @@ const bcrypt = require('bcrypt')
 const router = express.Router()
 const session = require('express-session')
 const Profile = require('../models/profiles')
+const Comments = require('../models/comments')
 
 // custom middleware
 const authRequired = (req, res, next) => {
@@ -92,13 +93,25 @@ router.get('/signout', (req, res) => {
     res.redirect('/')
 })
 
+// comment post route
+router.post('/:username', (req, res) => {
+    let foundUser = req.session.currentUser
+
+    Comments.create(req.body, (err, createdComment) => {
+        console.log('Comment is created', createdComment)
+    // Comments.push(req.body)
+        res.redirect(`/profile/${foundUser.username}`)
+    })
+})
+
 // profile show route
 router.get('/:username',  (req, res) => {
     const foundUser = req.session.currentUser
     Profile.findOne({username: req.params.username}, (err, userExists) => {
         if(userExists) {
             res.render('profile/showProfile', {
-                profile: foundUser
+                profile: foundUser,
+                comment: Comments
             })
         }else{
             res.send('user not found')
@@ -116,9 +129,12 @@ router.get('/:username/edit', (req, res) => {
 
 router.put('/:username', (req, res) => {
     let foundUser = req.session.currentUser
+    Profile.findOneAndUpdate({foundUser: req.body.username}, (err, updatedUser) => {
+        foundUser = req.body
+    })
     foundUser = req.body
     console.log(foundUser)
-    res.redirect(`/`)
+    res.redirect(`/profile/${foundUser.username}`)
 })
 
 
