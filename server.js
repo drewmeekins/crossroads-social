@@ -6,8 +6,8 @@ const Location = require('./models/locations')
 const methodOverride = require('method-override')
 const bcrypt = require('bcrypt')
 const session = require('express-session')
-const profileController = require('./controllers/profileController')
-const locationController = require('./controllers/locationController')
+
+
 const userController = require('./controllers/userController')
 
 // View Setup
@@ -27,14 +27,8 @@ mongoose.connection.once('open', () => {
     console.log('connected to mongo')
 })
 
-// middleware
-app.use((methodOverride('_method')))
-app.use(express.urlencoded({extended: true}))
-app.use(express.json())
-app.use(express.static('public'))
-app.use('/profile', profileController)
-app.use(locationController)
-// app.use('/users', userController)
+
+// a local variable on all ROUTES
 app.use(
     session({
       secret: process.env.SECRET, 
@@ -42,6 +36,28 @@ app.use(
       saveUninitialized: false 
     })
   )
+
+app.use((req, res, next) => {
+	res.locals.currentUser = req.session.currentUser
+
+	// if (req.session.currentUser) {
+	//   res.locals.authenticated = true
+  //}
+	next()
+})
+
+// middleware
+app.use((methodOverride('_method')))
+app.use(express.urlencoded({extended: true}))
+app.use(express.json())
+app.use(express.static('public'))
+const profileController = require('./controllers/profileController')
+app.use('/profile', profileController)
+const locationController = require('./controllers/locationController')
+app.use(locationController)
+// app.use('/users', userController)
+
+
 
 
 // user save route

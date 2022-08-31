@@ -1,7 +1,10 @@
 const express = require('express')
 const bcrypt = require('bcrypt')
 const router = express.Router()
+const session = require('express-session')
 const Profile = require('../models/profiles')
+
+
 
 
 // adding seed route
@@ -27,7 +30,7 @@ router.get('/profileseed', async (req, res) => {
 
 
 // register route
-router.get('/register/', (req, res) => {
+router.get('/register', (req, res) => {
     res.render('profile/newProfile')
   })
  
@@ -51,24 +54,49 @@ router.post('/register', (req, res) => {
     })   
 })
 
+// sign in route
+router.get('/signin', (req, res) => {
+    res.render('profile/signIn', {
+        currentUser: req.session.currentUser
+    })
+})
 
+// sign in post route
+router.post('/signin', (req, res) => {
+    Profile.findOne({username: req.body.username}, (err, foundUser) => {
+        if(foundUser){
+            const validLogin = bcrypt.compareSync(req.body.password, foundUser.password)
+            if(validLogin){
+                req.session.currentUser = foundUser
+                res.redirect(`/profile/${foundUser.username}`)
+            }else{
+                res.send('Invalid username or password')
+            }
+        }else{
+            res.send('Invalid username or password')
+        }
+    })
+})
 
-
-// // new profile route
-// router.get('/newprofile', (req, res) => {
-//     // res.send('Welcome To Crossroads. Please Sign Up!')
-//     res.render('profile/newProfile')
-// })
-
-// // sign in route
-// router.get('/signin', (req, res) => {
-//     // res.send('Welcome To Crossroads. Please Sign Up!')
-//     res.render('profile/signIn')
-// })
+// destroy session
+router.get('/signout', (req, res) => {
+    req.session.destroy()
+    res.redirect('/')
+})
 
 // profile show route
-router.get('/profile/:id', (req, res) => {
-    res.render('profile/showProfile')
+router.get('/:username',  (req, res) => {
+    const foundUser = req.session.currentUser
+    Profile.findOne({username: req.params.username}, (err, userExists) => {
+        if(userExists) {
+            res.render('profile/showProfile', {
+                profile: foundUser
+            })
+        }else{
+            res.send('user not found')
+        }
+    }) 
+    
 })
 
 
