@@ -1,7 +1,13 @@
-<%- include('../partials/header') %>
+<%- include('../partials/indexHeader') %>
 
 <body>
-    <h1>hello</h1>
+    <h1>Sign Up!</h1>
+    <form action="/new">
+        <input type="text" name="name" placeholder="Username">
+        <input type="text" name="password" placeholder="Password">
+        <input type="submit" placeholder="Submit">
+    </form>
+
 </body>
 
 <%- include('../partials/footer') %>
