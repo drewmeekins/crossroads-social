@@ -6,13 +6,13 @@ const Profile = require('../models/profiles')
 // const Comments = require('../models/comments')
 
 // custom middleware
-const authRequired = (req, res, next) => {
-    if(req.session.currentUser){
-        next()
-    }else{
-        res.send('You must be logged in to do that.')
-    }
-}
+// const authRequired = (req, res, next) => {
+//     if(req.session.currentUser){
+//         next()
+//     }else{
+//         res.send('You must be logged in to do that.')
+//     }
+// }
 
 
 

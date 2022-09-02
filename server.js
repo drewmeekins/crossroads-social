@@ -22,29 +22,30 @@ const PORT = process.env.PORT || 3000
 const mongoose = require('mongoose')
 const mongoURI = process.env.MONGO_URI
 
-mongoose.connect(mongoURI, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true })
+// mongoose.connect(mongoURI, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true })
+mongoose.connect(mongoURI)
 mongoose.connection.once('open', () => {
     console.log('connected to mongo')
 })
 
 
 // a local variable on all ROUTES
-app.use(
-    session({
-      secret: process.env.SECRET, 
-      resave: false, 
-      saveUninitialized: false 
-    })
-  )
+// app.use(
+//     session({
+//       secret: process.env.SECRET, 
+//       resave: false, 
+//       saveUninitialized: false 
+//     })
+//   )
 
-app.use((req, res, next) => {
-	res.locals.currentUser = req.session.currentUser
+// app.use((req, res, next) => {
+// 	res.locals.currentUser = req.session.currentUser
 
-	// if (req.session.currentUser) {
-	//   res.locals.authenticated = true
-  //}
-	next()
-})
+// 	// if (req.session.currentUser) {
+// 	//   res.locals.authenticated = true
+//   //}
+// 	next()
+// })
 
 // middleware
 app.use((methodOverride('_method')))
