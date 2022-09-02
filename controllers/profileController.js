@@ -104,14 +104,14 @@ router.get('/signout', (req, res) => {
 //     })
 // })
 
-router.put('/:username', (req, res) => {
-    let foundUser = req.session.currentUser
-    Profile.findOneAndUpdate(req.body, (err, createdComment) => {
-        console.log('Comment is created', createdComment)
-    // Comments.push(req.body)
-        res.redirect(`/profile/${foundUser.username}`)
-    })
-})
+// router.put('/:username', (req, res) => {
+//     let foundUser = req.session.currentUser
+//     Profile.findOneAndUpdate(req.body, (err, createdComment) => {
+//         console.log('Comment is created', createdComment)
+//     // Comments.push(req.body)
+//         res.redirect(`/profile/${foundUser.username}`)
+//     })
+// })
  
 
 // profile show route
@@ -140,12 +140,22 @@ router.get('/:username/edit', (req, res) => {
 
 router.put('/:username', (req, res) => {
     let foundUser = req.session.currentUser
-    Profile.findOneAndUpdate({foundUser: req.body.username}, (err, updatedUser) => {
-        foundUser = req.body
-    })
+    // Profile.findOneAndUpdate({foundUser: req.body.username}, (err, updatedUser) => {
+    //     foundUser = req.body
+    // })    
+    res.redirect(`/profile/${foundUser.username}`)
     foundUser = req.body
     console.log(foundUser)
-    res.redirect(`/profile/${foundUser.username}`)
+
+    
+})
+
+// delete route
+router.delete('/:username', (req, res) => {
+    Profile.findOneAndRemove(req.params.username, (err, data) => {
+        if(err) console.log(err)
+        res.redirect('/')
+    })
 })
 
 

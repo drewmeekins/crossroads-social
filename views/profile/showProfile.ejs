@@ -1,9 +1,9 @@
 <%- include('../partials/header') %>
 
 <body>
-    <h1>Hello There! Show Route</h1>
+    <h1>Profile Page</h1>
     <h2><%= profile.username %></h2>
-    <img src="<%= profile.img %>" alt="">
+    <img src="<%= profile.img %>" alt="" class="avatar">
 
     <div class="comments">
         <form action="/profile/<%= profile.username %>?_method=PUT" method="POST">

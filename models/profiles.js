@@ -10,8 +10,8 @@ const profileSchema = new mongoose.Schema({
     location: { type: String, required: false },
     interests: { type: String, required: false },
     img: { type: String, required: false },
-    commentName: { type: String, required: false },
-    comment: [{ type: String, required: false }],
+    // commentName: { type: String, required: false },
+    // comment: [{ type: String, required: false }],
 })
 
 // create model
