@@ -129,6 +129,13 @@ router.get('/:username',  (req, res) => {
     }) 
 })
 
+// delete route
+router.delete('/:username', (req, res) => {
+    Profile.findOneAndRemove(req.params.username, (err, data) => {
+        if(err) console.log(err)
+        res.redirect('/')
+    })
+})
 
 // edit route
 router.get('/:username/edit', (req, res) => {
@@ -138,25 +145,22 @@ router.get('/:username/edit', (req, res) => {
     })
 })
 
+// update route
 router.put('/:username', (req, res) => {
     let foundUser = req.session.currentUser
-    // Profile.findOneAndUpdate({foundUser: req.body.username}, (err, updatedUser) => {
-    //     foundUser = req.body
-    // })    
-    res.redirect(`/profile/${foundUser.username}`)
-    foundUser = req.body
-    console.log(foundUser)
+    // console.log(req.body)
+    // console.log(foundUser)
+    Profile.findByIdAndUpdate(req.params.username, {$push: req.body}, (err) => {
+        res.redirect(`/profile/${foundUser.username}`)
+    })    
+    
+    // foundUser = req.body
+    console.log(req.session)
 
     
 })
 
-// delete route
-router.delete('/:username', (req, res) => {
-    Profile.findOneAndRemove(req.params.username, (err, data) => {
-        if(err) console.log(err)
-        res.redirect('/')
-    })
-})
+
 
 
 module.exports = router

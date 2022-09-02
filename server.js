@@ -1,6 +1,3 @@
-
-
-
 // setup requirements
 const express = require('express')
 const app = express()
@@ -24,22 +21,21 @@ const PORT = process.env.PORT || 3000
 // setup mongoose
 const mongoose = require('mongoose')
 const mongoURI = process.env.MONGO_URI
-console.log(mongoURI)
-mongoose.connect(mongoURI, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true })
-// mongoose.connect(mongoURI)
+// mongoose.connect(mongoURI, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true })
+mongoose.connect(mongoURI)
 mongoose.connection.once('open', () => {
     console.log('connected to mongo')
 })
 
 
 // a local variable on all ROUTES
-// app.use(
-//     session({
-//       secret: process.env.SECRET, 
-//       resave: false, 
-//       saveUninitialized: false 
-//     })
-//   )
+app.use(
+    session({
+      secret: process.env.SECRET, 
+      resave: false, 
+      saveUninitialized: false 
+    })
+  )
 
 // app.use((req, res, next) => {
 // 	res.locals.currentUser = req.session.currentUser
