@@ -21,9 +21,9 @@ const PORT = process.env.PORT || 3000
 // setup mongoose
 const mongoose = require('mongoose')
 const mongoURI = process.env.MONGO_URI
-
-// mongoose.connect(mongoURI, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true })
-mongoose.connect(mongoURI)
+console.log(mongoURI)
+mongoose.connect(mongoURI, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true })
+// mongoose.connect(mongoURI)
 mongoose.connection.once('open', () => {
     console.log('connected to mongo')
 })
