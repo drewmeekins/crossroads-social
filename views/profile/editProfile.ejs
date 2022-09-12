@@ -4,14 +4,14 @@
     <div class="container">
         <h1>Edit Profile</h1>
         <form action="/profile/<%=profile.username%>?_method=PUT" method="POST" class="signUp">
-            <input type="text" name="username" placeholder="<%= profile.username %>">
-            <input type="text" name="password" placeholder="Password">
-            <input type="text" name="name" placeholder="<%= profile.name %>">
-            <input type="text" name="dob" placeholder="<%= profile.dob %>">
-            <input type="text" name="location" placeholder="<%= profile.location %>">
-            <input type="text" name="interests" placeholder="<%= profile.interests %>">
-            <input type="text" name="img" placeholder="Image Link">
-            <input type="submit" placeholder="Submit">
+            <input type="text" name="username" value="<%= profile.username %>">
+            <!-- <input type="text" name="password" placeholder="Password"> -->
+            <input type="text" name="name" value="<%= profile.name %>">
+            <input type="text" name="dob" value="<%= profile.dob %>">
+            <input type="text" name="location" value="<%= profile.location %>">
+            <input type="text" name="interests" value="<%= profile.interests %>">
+            <input type="text" name="img" value="<%= profile.img %>">
+            <input type="submit" value="Submit">
         </form>
     </div>
 </body>

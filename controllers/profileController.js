@@ -150,16 +150,16 @@ router.put('/:username', (req, res) => {
     let foundUser = req.session.currentUser
     // console.log(req.body)
     // console.log(foundUser)
-    Profile.findOneAndUpdate({foundUser: req.params.id}, 
+    Profile.findOneAndUpdate(foundUser, 
         {
             username: req.body.username,
-            password: req.body.password,
+            // password: req.body.password,
             name: req.body.name,
             dob: req.body.dob,
             location: req.body.location,
             interests: req.body.interests,
             img: req.body.img,
-            comment: req.body.comment
+            // comment: req.body.comment
         }, 
         (err) => {
             res.redirect(`/profile/${foundUser.username}`)
@@ -168,14 +168,6 @@ router.put('/:username', (req, res) => {
     // foundUser = req.body
     console.log(req.session)
 })
-
-// delete route
-// router.delete('/:username/delete', (req, res) => {
-//     let foundUser = req.session.currentUser
-//     Profile.findOneAndRemove({foundUser: req.params.username}, (err, data) => {
-//         res.redirect('/')
-//     })
-// })
 
 
 module.exports = router
