@@ -8,14 +8,14 @@
     <div class="comments">
         <form action="/profile/<%= profile.username %>?_method=PUT" method="POST">
             <input type="text" name="commentName" placeholder="Name">
-            <input type="text" name="comment" placeholder="Comment">
+            <input type="text" name="commentBody" placeholder="Comment">
             <input type="submit" placeholder="Submit">
         </form>
 
         <ul class="comments">
             <% for(let i = 0; i < profile.length; i++) { %>
                 <li>
-                    <%= profile[i]%>
+                    <%= profile[i].comment%>
                 </li>
             <% } %>
         </ul>
