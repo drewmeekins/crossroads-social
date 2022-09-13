@@ -93,26 +93,6 @@ router.get('/signout', (req, res) => {
     res.redirect('/')
 })
 
-// comment post route
-// router.post('/:username', (req, res) => {
-//     let foundUser = req.session.currentUser
-
-//     Comments.create(req.body, (err, createdComment) => {
-//         console.log('Comment is created', createdComment)
-//     // Comments.push(req.body)
-//         res.redirect(`/profile/${foundUser.username}`)
-//     })
-// })
-
-// router.put('/:username', (req, res) => {
-//     let foundUser = req.session.currentUser
-//     Profile.findOneAndUpdate(req.body, (err, createdComment) => {
-//         console.log('Comment is created', createdComment)
-//     // Comments.push(req.body)
-//         res.redirect(`/profile/${foundUser.username}`)
-//     })
-// })
- 
 
 // profile show route
 router.get('/:username',  (req, res) => {

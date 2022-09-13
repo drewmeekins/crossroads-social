@@ -71,9 +71,12 @@ app.get('/newprofile', (req, res) => {
 // })
 
 // index route
-app.get('/', (req, res) => {
+app.get('/', async (req, res) => {
+    let profile = await Profile.find({})
     // res.send('Welcome To Crossroads')
-    res.render('index')
+    res.render('index', {
+        profile: profile,
+    })
 })
 
 // setup server

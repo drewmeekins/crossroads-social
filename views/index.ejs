@@ -8,6 +8,20 @@
             <button><a href="/profile/register">Sign Up</a></button>
             <button><a href="/profile/signin">Sign In</a></button>
         </div>
+
+        <div class="profiles">
+            <ul class="profile">
+                <% for(let i = 0; i < profile.length; i++) { %>
+                    <li>
+                        <img src="<%= profile[i].img %>" alt="" class="avatarSmall">
+                    </li>
+
+                    <li>
+                        <a href="/profile/<%=profile[i].username%>"><%= profile[i].username %></a>
+                    </li>
+                <% } %>
+            </ul>
+        </div>
     </div>
 </body>
 
