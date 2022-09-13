@@ -24,10 +24,17 @@
 Routes
 --USERS
 GET/index - index home page
+
 GET/signin - sign in page
+
 POST/signin - sign in page
+
 GET/signup - sign up page
+
 POST/signup - sign up page
+
 GET/profile/:id - user profile page
+
 POST/profile/editprofile - user edit profile page
+
 DELETE/profile/delete - deletes logged in user's profile
