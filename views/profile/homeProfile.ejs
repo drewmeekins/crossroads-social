@@ -1,0 +1,25 @@
+<%- include('../partials/header') %>
+
+<body>
+    <h1>Profile Page</h1>
+    <h2><%= profile.username %></h2>
+    <img src="<%= profile.img %>" alt="" class="avatar">
+
+    <div class="comments">
+        <form action="/profile/<%= profile.username %>?_method=PUT" method="POST">
+            <input type="text" name="commentName" placeholder="Name">
+            <input type="text" name="commentBody" placeholder="Comment">
+            <input type="submit" placeholder="Submit">
+        </form>
+
+        <ul class="comments">
+            <% for(let i = 0; i < profile.length; i++) { %>
+                <li>
+                    <%= profile[i].comment%>
+                </li>
+            <% } %>
+        </ul>
+    </div>
+</body>
+
+<%- include('../partials/footer') %>

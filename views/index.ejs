@@ -13,11 +13,24 @@
             <ul class="profile">
                 <% for(let i = 0; i < profile.length; i++) { %>
                     <li>
+                        <h5><%= profile[i].username %></h5>
+                    </li>
+
+                    <li>
                         <img src="<%= profile[i].img %>" alt="" class="avatarSmall">
                     </li>
 
                     <li>
-                        <a href="/profile/<%=profile[i].username%>"><%= profile[i].username %></a>
+                        Name: <%= profile[i].name %>
+                    </li>
+                    <li>
+                        Birthday: <%= profile[i].dob %>
+                    </li>
+                    <li>
+                        Location: <%= profile[i].location %>
+                    </li>
+                    <li>
+                        Interests: <%= profile[i].interests %>
                     </li>
                 <% } %>
             </ul>

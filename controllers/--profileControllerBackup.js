@@ -93,11 +93,13 @@ router.get('/signout', (req, res) => {
     res.redirect('/')
 })
 
-router.get('/homeprofile',  (req, res) => {
+
+// profile show route
+router.get('/:username',  (req, res) => {
     const foundUser = req.session.currentUser
     Profile.findOne({username: req.params.username}, (err, userExists) => {
         if(userExists) {
-            res.render('profile/homeProfile', {
+            res.render('profile/showProfile', {
                 profile: foundUser,
                 // comment: Comments
             })
@@ -106,39 +108,6 @@ router.get('/homeprofile',  (req, res) => {
         }
     }) 
 })
-
-
-// // profile show route
-router.get('/:username', async (req, res) => {
-    const foundUser = req.session.currentUser
-    const profile = await Profile.find({username: req.body.username})
-    Profile.findOne({username: req.params.username}, (err, userExists) => {
-        if(userExists){
-            res.render('profile/showProfile', {
-                profile: foundUser,
-                // comment: Comments
-            })
-        }else{
-            res.render('profile/showProfile', {
-                profile: profile,
-                // comment: Comments
-            })
-        }
-    }) 
-    console.log(foundUser)
-}) 
-
-
-// profile show route
-// router.get('/:username', async (req, res) => {
-//     // const foundUser = req.session.currentUser
-//     let profile = await Profile.findById(req.params.username)
-//             res.render('profile/showProfile', {
-//                 profile: profile
-//                 // comment: Comments
-//             })
-//         console.log(profile)
-//     }) 
 
 // delete route
 router.delete('/:username', (req, res) => {
